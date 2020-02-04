@@ -1,0 +1,22 @@
+clc
+myvars = who;
+a=length(myvars);
+myvars_signals = cell(a,1);
+myvars_sizes = zeros(a,1);
+append_text = '.signals.values';
+for i = 1:a
+    myvars_signals{i,1}=strcat(myvars{i},append_text);
+end
+
+for i=1:a
+    calc_variable = eval('myvars_signals{i}');
+    array = eval(calc_variable);
+    myvars_sizes(i) = length(array);
+end
+
+C = size(unique(myvars_sizes));
+if C(1)==1
+    disp('All labels have the same size');
+else
+    disp('There are some labels which have different size');
+end
